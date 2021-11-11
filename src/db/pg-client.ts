@@ -5,7 +5,7 @@ const pgClient = new pg.Client({
     database: 'hw2',
     host: 'localhost',
     port: 5432,
-    password: '7612331s'
+    password: '789456'
 });
 
 export default pgClient;

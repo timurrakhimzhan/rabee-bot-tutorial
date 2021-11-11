@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import {UserGetReqQuery, UserGetResponse} from "./types";
 import {RouteParameters} from "express-serve-static-core";
 import * as path from "path";
+import * as dbRequests from "./db/db-requests";
 import pgClient from "./db/pg-client";
 
 const app = express();
@@ -29,10 +30,15 @@ async function main() {
     } catch(error) {
         console.log("Something went wrong during connecting to db");
     }
-    await app.listen(3000);
-    console.log("Server is listening on 3000 port");
+    await app.listen(3010);
+    console.log("Server is listening on 3010 port");
 }
-
 
 main()
 
+
+app.get('/record', dbRequests.getRecord)
+app.get('/record/:email', dbRequests.getRecordByEmail)
+app.post('/record', dbRequests.createRecord)
+app.put('/record/:email', dbRequests.updateRecord)
+app.delete('/record/:email', dbRequests.deleteRecord)
